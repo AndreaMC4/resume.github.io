@@ -15,6 +15,12 @@
       --glass: rgba(255,255,255,0.04);
       --radius:12px;
       font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      .avatar-img {
+      width: 96px;
+      height: 96px;
+      border-radius: 16px;
+      object-fit: cover;
+
     }
     *{box-sizing:border-box}
     body{margin:0;background:linear-gradient(180deg,var(--bg),#071028);color:#e6eef8;line-height:1.5}
@@ -69,18 +75,18 @@
 </head>
 <body>
   <div class="container">
-    <header>
-      <div class="avatar">MA</div>
-      <div>
-        <h1>Nombre Apellido</h1>
-        <p class="lead">Desarrollador / Diseñador / Profesional. Aquí muestro mis trabajos y mi experiencia laboral.</p>
-      </div>
-      <nav>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </header>
+   <header>
+  <img src="perfil.jpg" alt="Mi foto" class="avatar-img">
+  <div>
+    <h1>Andrea Martínez Cuevas</h1>
+    <p class="lead">Bióloga / Biotecnóloga.</p>
+  </div>
+  <nav>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
 
     <main>
       <!-- Columna principal -->
@@ -88,13 +94,11 @@
         <!-- Sobre mi -->
         <section class="card" id="sobre-mi">
           <h2>Sobre mí</h2>
-          <p class="muted">Escribe aquí una presentación corta. P. ej.: "Soy diseñador de producto con 5 años de experiencia en interfaces y prototipos. Me gusta construir soluciones simples y escalables."</p>
-          <p>Puedes editar este texto directamente en el HTML o usar el formulario de edición más abajo (interactivo).</p>
+          <p>La + xula del blok.</p>
 
-          <div style="margin-top:12px">
-            <button class="btn" id="editAboutBtn">Editar presentación</button>
-            <button class="secondary" id="downloadResume">Descargar CV (PDF)</button>
-          </div>
+            <div style="margin-top:12px">
+            <a href="CV_AndreaMartinezCuevas_ES.pdf" download class="btn" id="downloadResume">Descargar CV (PDF)</a>
+            </div>
 
           <!-- Editor simple (se muestra con JS) -->
           <div id="aboutEditor" style="display:none;margin-top:12px">
@@ -108,33 +112,12 @@
         </section>
 
         <!-- Portafolio: subir trabajos -->
-        <section class="card" id="portfolio">
-          <h2>Portafolio — Trabajos</h2>
-          <p class="muted">Sube imágenes, PDFs o enlaces a tus trabajos. El sitio mostrará una previsualización local (esto no sube a Internet a menos que conectes un backend).</p>
-
-          <div class="drop" id="dropZone">Arrastra archivos aquí o <label for="fileInput" style="color:var(--accent);cursor:pointer">selecciona archivos</label>
-            <input type="file" id="fileInput" multiple style="display:none" accept="image/*,.pdf" />
-          </div>
-
-          <div id="worksGrid" class="grid" style="margin-top:12px"></div>
-
-          <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:14px 0" />
-
-          <label>Agregar proyecto manualmente</label>
-          <div class="stack">
-            <input type="text" id="projTitle" placeholder="Título del proyecto" />
-            <input type="text" id="projLink" placeholder="Enlace (opcional)" />
-            <textarea id="projDesc" placeholder="Descripción corta (opcional)"></textarea>
-            <div>
-              <button class="btn" id="addProject">Agregar proyecto</button>
-            </div>
-          </div>
-        </section>
+       
 
         <!-- Contacto / Footer dentro de columna principal -->
         <section class="card" id="contacto">
           <h2>Contacto</h2>
-          <p class="muted">Correo, LinkedIn, GitHub u otras formas de contacto.</p>
+          <p class="muted">Correo, LinkedIn</p>
           <form id="contactForm" onsubmit="return false">
             <label>Correo</label>
             <input type="text" id="contactEmail" placeholder="tu@ejemplo.com" />
@@ -160,34 +143,12 @@
           </div>
         </div>
 
-        <section class="card" id="experiencia" style="margin-top:12px">
-          <h3>Experiencia laboral</h3>
-          <div class="timeline" id="experienceList">
-            <!-- Items generados por JS -->
-          </div>
-
-          <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0" />
-
-          <h4>Añadir experiencia</h4>
-          <div class="stack">
-            <input type="text" id="expCompany" placeholder="Empresa / Organización" />
-            <input type="text" id="expRole" placeholder="Rol / Puesto" />
-            <label>Desde</label>
-            <input type="date" id="expFrom" />
-            <label>Hasta (dejar vacio si sigue)</label>
-            <input type="date" id="expTo" />
-            <textarea id="expDesc" placeholder="Descripción breve (responsabilidades, logros)"></textarea>
-            <div style="display:flex;gap:8px">
-              <button class="btn" id="addExp">Agregar</button>
-              <button class="secondary" id="clearExp">Limpiar</button>
-            </div>
-          </div>
-        </section>
+        
       </aside>
     </main>
 
     <footer>
-      Hecho con ♥ — Edita este archivo index.html para personalizar tu portafolio.
+      Hecho con ♥ 
     </footer>
   </div>
 
@@ -380,13 +341,7 @@
     // Inicialización
     renderWorks(); renderExp();
 
-    // Botón descargar CV -> genera PDF simple desde la bio (demo)
-    document.getElementById('downloadResume').onclick = ()=>{
-      const about = document.querySelector('#sobre-mi p.muted').textContent
-      const w = window.open('','_blank')
-      const html = `<html><head><meta charset="utf-8"><title>CV - ${document.querySelector('h1').textContent}</title></head><body><h1>${document.querySelector('h1').textContent}</h1><p>${about}</p></body></html>`
-      w.document.write(html); w.document.close(); w.print()
-    }
+    
 
     // Botón contratar -> abre mailto
     document.getElementById('hireBtn').onclick = ()=>{
