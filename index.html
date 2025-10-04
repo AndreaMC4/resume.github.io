@@ -3,31 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi portafolio — Nombre Apellido</title>
-  <meta name="description" content="Página autobiográfica para mostrar trabajos y experiencia laboral." />
+  <title>Andrea Mártinez Cuevas</title>
+  <meta name="description" content="Vida profesional." />
   <!-- Estilos sencillos y responsivos -->
   <style>
     :root{
-      --bg:#0f1724; /* fondo oscuro */
+      --bg:#aee6fa;
       --card:#0b1220;
-      --muted:#94a3b8;
+      --blank:#ffffff;
+      --muted:#000000;
       --accent:#6ee7b7;
       --glass: rgba(255,255,255,0.04);
       --radius:12px;
       font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      .avatar-img {
+    }
+    .avatar-img {
       width: 96px;
       height: 96px;
       border-radius: 16px;
       object-fit: cover;
-
     }
+
+    /* Modal */
+    .modal {
+      display: none; /* oculto por defecto */
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: var(--card);
+      padding: 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin: 16px 0;
+      justify-content: center;
+    }
+
     *{box-sizing:border-box}
     body{margin:0;background:linear-gradient(180deg,var(--bg),#071028);color:#e6eef8;line-height:1.5}
     .container{max-width:1100px;margin:32px auto;padding:20px}
     header{display:flex;gap:20px;align-items:center}
     .avatar{width:96px;height:96px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:700;color:#05202a}
-    h1{margin:0;font-size:24px}
+    h1{margin:0;font-size:24px; color: #000000}
     p.lead{margin:6px 0;color:var(--muted)}
     nav{margin-left:auto}
     nav a{color:var(--muted);text-decoration:none;margin-left:12px}
@@ -35,18 +62,15 @@
     main{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:24px}
     @media (max-width:900px){main{grid-template-columns:1fr}}
 
-    /* Tarjeta / secciones */
     .card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
     section + section{margin-top:16px}
 
-    /* Portafolio */
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
     @media (max-width:600px){.grid{grid-template-columns:1fr}}
     .thumb{background:var(--glass);padding:10px;border-radius:10px;min-height:100px;display:flex;flex-direction:column}
     .thumb img{max-width:100%;height:120px;object-fit:cover;border-radius:8px}
     .meta{font-size:13px;color:var(--muted);margin-top:8px}
 
-    /* Experiencia (timeline simple) */
     .timeline{display:flex;flex-direction:column;gap:10px}
     .exp{display:flex;gap:12px}
     .exp .dot{width:10px;height:10px;background:var(--accent);border-radius:50%;margin-top:6px}
@@ -54,7 +78,6 @@
     .exp h4{margin:0;font-size:15px}
     .exp p{margin:6px 0;color:var(--muted);font-size:14px}
 
-    /* Formatos y botones */
     label{display:block;font-size:13px;margin-bottom:6px}
     input[type="text"],input[type="date"],textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
     textarea{min-height:86px}
@@ -62,13 +85,11 @@
     .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
     .muted{color:var(--muted)}
 
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+    footer{margin-top:28px;text-align:center;color:var(--blank);font-size:13px}
 
-    /* Upload drop area */
     .drop{border:2px dashed rgba(255,255,255,0.04);padding:14px;border-radius:10px;text-align:center}
     .drop.dragover{background:rgba(255,255,255,0.02)}
 
-    /* Small utilities */
     .row{display:flex;gap:12px}
     .stack{display:flex;flex-direction:column;gap:8px}
   </style>
@@ -76,279 +97,131 @@
 <body>
   <div class="container">
    <header>
-  <img src="perfil.jpg" alt="Mi foto" class="avatar-img">
+  <img src="perfil.png" alt="Mi foto" class="avatar-img">
   <div>
     <h1>Andrea Martínez Cuevas</h1>
-    <p class="lead">Bióloga / Biotecnóloga.</p>
+    <p class="lead">Bióloga / Biotecnóloga</p>
   </div>
   <nav>
-    <a href="#portfolio">Portfolio</a>
+    <a href="#portafolio">Portafolio</a>
     <a href="#experiencia">Experiencia</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
 
     <main>
-      <!-- Columna principal -->
       <div>
         <!-- Sobre mi -->
         <section class="card" id="sobre-mi">
           <h2>Sobre mí</h2>
-          <p>La + xula del blok.</p>
-
-            <div style="margin-top:12px">
+          <p>Mi nombre es Andrea Martínez Cuevas, nací en 2001 en Baza. Completé mis estudios de Educación Secundaria Obligatoria en el IES José de Mora, donde participé en un programa para altas capacidades que despertó mi interés por la ciencia y la investigación.</p> 
+          <p>Posteriormente, cursé Bachillerato en el mismo instituto, donde me preparé para Selectividad y pude acceder al Grado en Biología en la Universidad de Granada. Durante mi formación universitaria, profundicé en distintas áreas de la biología y desarrollé competencias analíticas y de investigación que me han permitido consolidar mi perfil científico. Durante esta etapa realice el tercer curso de ERASMUS en italia, que me ayudó a acreditar mi titulo de B1 en Italiano completando mis habilidades de comunicación con el titulo B2 de Inglés. Finalicé este grado con mi Trabajo Fin de Grado titulado "Síndromes relacionados con deleciones y duplicaciones cromosómicas" con una nota media de 9. </p> 
+          <p>Tras finalizar el grado, decidí ampliar mis conocimientos mediante el Máster en Biotecnología en la misma universidad, especializándome en áreas avanzadas de biología y fortaleciendo mi capacidad para abordar proyectos de investigación de manera rigurosa y eficiente. Terminé el máster con mi Trabajo Fin de Máster titulado "Análisis in vitro del proceso inflamatorio mediante la generación de líneas de macrófagos Knockout para NLRP3 y AIM2" calificado con una nota media de 9,8 y publicado en PubMed.</p> 
+          <p>Me considero una persona comprometida con la excelencia académica, con curiosidad científica y con un enfoque meticuloso hacia la investigación. Mis intereses actuales se inclinan por el campo de la investigación o de la reproducción asistida, pero estoy abierta a cualquier campo relacionado con mis estudios que me permitan incrementar mi formación profesional</p>
+          <div style="margin-top:12px; text-align:right">
             <a href="CV_AndreaMartinezCuevas_ES.pdf" download class="btn" id="downloadResume">Descargar CV (PDF)</a>
-            </div>
-
-          <!-- Editor simple (se muestra con JS) -->
-          <div id="aboutEditor" style="display:none;margin-top:12px">
-            <label>Presentación</label>
-            <textarea id="aboutText">Soy profesional con experiencia...</textarea>
-            <div style="margin-top:8px">
-              <button class="btn" id="saveAbout">Guardar</button>
-              <button class="secondary" id="cancelAbout">Cancelar</button>
-            </div>
           </div>
         </section>
 
-        <!-- Portafolio: subir trabajos -->
-       
-
-        <!-- Contacto / Footer dentro de columna principal -->
+        
         <section class="card" id="contacto">
-          <h2>Contacto</h2>
-          <p class="muted">Correo, LinkedIn</p>
-          <form id="contactForm" onsubmit="return false">
-            <label>Correo</label>
-            <input type="text" id="contactEmail" placeholder="tu@ejemplo.com" />
-            <label>Mensaje</label>
-            <textarea id="contactMsg" placeholder="Escribe un mensaje breve..."></textarea>
-            <div style="margin-top:8px">
-              <button class="btn" id="sendMsg">Enviar</button>
-            </div>
-          </form>
-        </section>
+ <section class="card" id="contacto">
+  <h2>Contacto</h2>
+  <p class="blank">Aquí puedes contactarme directamente:</p>
+  <ul style="list-style:none;padding:0;display:flex;gap:12px;align-items:center;">
+    <!-- Correo -->
+    <li>
+      <a href="mailto:andreamtc45@gmail.com" title="Correo">
+        <img src="correo.png" alt="Correo" width="32" height="32">
+      </a>
+    </li>
+    <!-- LinkedIn -->
+    <li>
+      <a href="https://www.linkedin.com/in/andrea-mart%C3%ADnez-cuevas?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" title="LinkedIn">
+        <img src="linkedin.png" alt="LinkedIn" width="32" height="32">
+      </a>
+    </li>
+    <!-- Instagram -->
+    <li>
+      <a href="https://www.instagram.com/andreaaa847?igsh=aGtrcWQwZ2hwbWd1" target="_blank" title="Instagram">
+        <img src="instagram.png" alt="Instagram" width="32" height="32">
+      </a>
+    </li>
+  </ul>
+</section>
+
+
+        
       </div>
 
-      <!-- Columna derecha: experiencia + resumen rápido -->
       <aside>
         <div class="card">
           <h3>Resumen rápido</h3>
-          <p class="muted">Grado en Biología</p>
-          <p class="muted">Máster en Biotecnología</p>
-          <p class="muted">Inglés B2</p>
-          <p class="muted">Italiano  B1</p>
+          <p class="blank">Grado en Biología</p>
+          <p class="blank">Máster en Biotecnología</p>
+          <p class="blank">Inglés B2</p>
+          <p class="blank">Italiano  B1</p>
           <div style="margin-top:8px">
-            <button class="btn" id="hireBtn">Contrátame</button>
+            
           </div>
         </div>
+   <div style="height:16px;"></div>
 
-        
-      </aside>
+      
+  <div class="card">
+    <h3>Mis trabajos</h3>
+    <div style="margin-top:12px; display:flex; flex-direction:column; gap:12px;">
+      <!-- Botón TFG -->
+      <a href="TFGB_GEN12_2023_Martínez_Cuevas.pdf" download class="btn" style="display:flex; justify-content:center; align-items:center;">Descargar TFG</a>
+      <!-- Botón TFM -->
+      <a href="TFM_Andrea_Martínez_Cuevas.pdf" download class="btn" style="display:flex; justify-content:center; align-items:center;">Descargar TFM</a>
+    </div>
+  </div>
+</aside>
+
+
     </main>
 
     <footer>
-      Hecho con ♥ 
+    Hecho con ♥. Para la mejor investigadora de este planeta, si ves esto y no la contratas estas tirando tu dinero.
     </footer>
   </div>
 
-  <!-- Comportamiento con JavaScript (todo en el cliente) -->
+  <!-- Modal para elegir idioma -->
+  <div id="cvModal" class="modal">
+    <div class="modal-content">
+      <h3>Elige el idioma del CV</h3>
+      <div class="btn-group">
+        <a href="CV_AndreaMartinezCuevas_ES.pdf" download class="btn">CV_AndreaMartinezCuevas_ES</a>
+        <a href="CV_AndreaMartinezCuevas_EN.pdf" download class="btn">CV_AndreaMartinezCuevas_EN</a>
+        <a href="CV_AndreaMartinezCuevas_IT.pdf" download class="btn">CV_AndreaMartinezCuevas_IT</a>
+      </div>
+      <button class="blank" id="closeModal">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Script -->
   <script>
-    // --- Utilidades de almacenamiento local (para demo sin backend) ---
-    const KEY_WORKS = 'mi_portfolio_works_v1'
-    const KEY_EXPS = 'mi_portfolio_exps_v1'
-    const KEY_ABOUT = 'mi_portfolio_about_v1'
-
-    // Obtener/guardar en localStorage
-    const load = (k, fallback) => { try { const v = localStorage.getItem(k); return v? JSON.parse(v) : fallback } catch(e){return fallback} }
-    const save = (k,v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch(e){} }
-
-    // --- Sobre mí (editor simple) ---
-    const editBtn = document.getElementById('editAboutBtn')
-    const aboutEditor = document.getElementById('aboutEditor')
-    const aboutText = document.getElementById('aboutText')
-    const saveAbout = document.getElementById('saveAbout')
-    const cancelAbout = document.getElementById('cancelAbout')
-
-    // Inicializar about
-    const aboutInitial = load(KEY_ABOUT, 'Escribe aquí una breve biografía profesional.')
-    document.querySelector('#sobre-mi p.muted').textContent = aboutInitial
-    aboutText.value = aboutInitial
-
-    editBtn.onclick = ()=> aboutEditor.style.display = 'block'
-    cancelAbout.onclick = ()=> { aboutEditor.style.display='none'; aboutText.value = document.querySelector('#sobre-mi p.muted').textContent }
-    saveAbout.onclick = ()=>{
-      const v = aboutText.value.trim() || '—'
-      document.querySelector('#sobre-mi p.muted').textContent = v
-      save(KEY_ABOUT, v)
-      aboutEditor.style.display='none'
-    }
-
-    // --- Manejo de archivos (preview local) ---
-    const fileInput = document.getElementById('fileInput')
-    const dropZone = document.getElementById('dropZone')
-    const worksGrid = document.getElementById('worksGrid')
-
-    function renderWorks(){
-      const arr = load(KEY_WORKS, [])
-      worksGrid.innerHTML = ''
-      arr.forEach((w, i) => {
-        const el = document.createElement('div')
-        el.className='thumb'
-        if(w.type && w.type.startsWith('image')){
-          const img = document.createElement('img')
-          img.src = w.data
-          el.appendChild(img)
-        } else if(w.name && w.name.endsWith('.pdf')){
-          const ic = document.createElement('div')
-          ic.style.padding='18px'
-          ic.textContent = 'PDF — ' + w.name
-          el.appendChild(ic)
-        } else {
-          const ic = document.createElement('div')
-          ic.style.padding='12px'
-          ic.textContent = w.name || 'Archivo'
-          el.appendChild(ic)
-        }
-        const meta = document.createElement('div')
-        meta.className='meta'
-        meta.textContent = w.title || w.name || ''
-        el.appendChild(meta)
-
-        // botón eliminar
-        const btn = document.createElement('button')
-        btn.className='secondary'
-        btn.style.marginTop='8px'
-        btn.textContent='Eliminar'
-        btn.onclick = ()=>{ removeWork(i) }
-        el.appendChild(btn)
-
-        worksGrid.appendChild(el)
-      })
-    }
-
-    function removeWork(index){
-      const arr = load(KEY_WORKS, [])
-      arr.splice(index,1)
-      save(KEY_WORKS,arr)
-      renderWorks()
-    }
-
-    function handleFiles(files){
-      const arr = load(KEY_WORKS, [])
-      const toAdd = []
-      Array.from(files).slice(0,20).forEach(file => {
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          const obj = {name: file.name, type: file.type, data: e.target.result}
-          arr.push(obj)
-          save(KEY_WORKS, arr)
-          renderWorks()
-        }
-        // Para imágenes y PDFs los mostramos en base64; cuidado con archivos grandes
-        if(file.size < 5 * 1024 * 1024) reader.readAsDataURL(file)
-        else { // si muy grande, guardamos solo metadatos
-          arr.push({name:file.name, type:file.type, data: null})
-          save(KEY_WORKS,arr); renderWorks()
-        }
-      })
-    }
-
-    // eventos
-    fileInput.addEventListener('change', (e)=> handleFiles(e.target.files))
-
-    dropZone.addEventListener('dragover', (e)=>{ e.preventDefault(); dropZone.classList.add('dragover') })
-    dropZone.addEventListener('dragleave', ()=> dropZone.classList.remove('dragover'))
-    dropZone.addEventListener('drop', (e)=>{ e.preventDefault(); dropZone.classList.remove('dragover'); if(e.dataTransfer.files) handleFiles(e.dataTransfer.files) })
-
-    // agregar proyecto manualmente
-    document.getElementById('addProject').onclick = ()=>{
-      const title = document.getElementById('projTitle').value.trim()
-      const link = document.getElementById('projLink').value.trim()
-      const desc = document.getElementById('projDesc').value.trim()
-      if(!title) return alert('Pon un título para el proyecto')
-      const arr = load(KEY_WORKS, [])
-      arr.unshift({name: title, type: 'link', url: link, title:title, desc:desc})
-      save(KEY_WORKS,arr)
-      document.getElementById('projTitle').value=''
-      document.getElementById('projLink').value=''
-      document.getElementById('projDesc').value=''
-      renderWorks()
-    }
-
-    // --- Experiencia: agregar / mostrar ---
-    const renderExp = ()=>{
-      const arr = load(KEY_EXPS, [])
-      const list = document.getElementById('experienceList')
-      list.innerHTML=''
-      arr.forEach((e,i)=>{
-        const el = document.createElement('div')
-        el.className='exp'
-        el.innerHTML = `<div class="dot"></div><div class="body"><h4>${e.role || '—'} · ${e.company || '—'}</h4><p class="muted">${e.from || ''} — ${e.to || 'Presente'}</p><p class="muted">${e.desc || ''}</p></div>`
-        const del = document.createElement('button')
-        del.className='secondary'
-        del.textContent='Eliminar'
-        del.style.marginLeft='auto'
-        del.onclick = ()=>{ if(confirm('Eliminar esta experiencia?')){ removeExp(i) } }
-        el.appendChild(del)
-        list.appendChild(el)
-      })
-    }
-
-    function removeExp(i){
-      const arr = load(KEY_EXPS, [])
-      arr.splice(i,1)
-      save(KEY_EXPS,arr)
-      renderExp()
-    }
-
-    document.getElementById('addExp').onclick = ()=>{
-      const company = document.getElementById('expCompany').value.trim()
-      const role = document.getElementById('expRole').value.trim()
-      const from = document.getElementById('expFrom').value
-      const to = document.getElementById('expTo').value
-      const desc = document.getElementById('expDesc').value.trim()
-      if(!company || !role) return alert('Rellena empresa y rol')
-      const arr = load(KEY_EXPS, [])
-      arr.unshift({company, role, from, to, desc})
-      save(KEY_EXPS,arr)
-      document.getElementById('expCompany').value=''
-      document.getElementById('expRole').value=''
-      document.getElementById('expFrom').value=''
-      document.getElementById('expTo').value=''
-      document.getElementById('expDesc').value=''
-      renderExp()
-    }
-
-    document.getElementById('clearExp').onclick = ()=>{
-      document.getElementById('expCompany').value=''
-      document.getElementById('expRole').value=''
-      document.getElementById('expFrom').value=''
-      document.getElementById('expTo').value=''
-      document.getElementById('expDesc').value=''
-    }
-
-    // Mensaje de contacto (simulado)
-    document.getElementById('sendMsg').onclick = ()=>{
-      const email = document.getElementById('contactEmail').value.trim()
-      const msg = document.getElementById('contactMsg').value.trim()
-      if(!email || !msg) return alert('Rellena correo y mensaje')
-      alert('Mensaje enviado (simulación). Añade tu backend para recibir mensajes reales.')
-      document.getElementById('contactEmail').value=''
-      document.getElementById('contactMsg').value=''
-    }
-
-    // Inicialización
-    renderWorks(); renderExp();
-
     
+    // --- Modal CV ---
+    const downloadBtn = document.getElementById('downloadResume');
+    const modal = document.getElementById('cvModal');
+    const closeModal = document.getElementById('closeModal');
 
-    // Botón contratar -> abre mailto
-    document.getElementById('hireBtn').onclick = ()=>{
-      const mail = prompt('Introduce tu correo (para el mailto):','tu@ejemplo.com')
-      if(mail) window.location.href = `mailto:${mail}?subject=Interesado%20en%20tu%20perfil`
-    }
+    downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // evita la descarga directa
+      modal.style.display = 'flex';
+    });
 
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
